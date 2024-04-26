@@ -1,0 +1,75 @@
+.Accordion {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+  flex-flow: column nowrap;
+  padding: 20px 0;
+
+}
+.accordion__container{
+  width: 90dvw;
+  height: 70dvh;
+  min-height: 300px;
+  display: flex;
+}
+.accordion__item {
+  width: calc(var(--index) * 4);
+  display: flex;
+  overflow: hidden;
+  transition: width 0.3s;
+
+
+  .accordion__button{
+    position:relative;
+    flex-shrink: 0;
+    width: calc(var(--index) *4);
+    border-left: 1px solid #000;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-flow: column;
+    background-color: var(--blue);
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 10px;
+
+
+    *{
+        cursor: pointer;
+    }
+    h2{
+      position: relative;
+        font-size: calc(var(--index) * 1.25);
+        font-weight: 600;
+        margin: 0;
+        font-family: 'pro display';
+      text-align: left;
+      color: var(--white_text);
+    }
+    :nth-child(1){
+      transform: rotate(-90deg);
+      width: calc(var(--index) * 20);
+      bottom: 50%;
+    }
+
+
+
+  }
+
+  .accordion_content{
+    flex-shrink: 0;
+    height: 100%;
+    padding: 40px 30px;
+    overflow: hidden;
+    overflow-y: auto;
+    background-color: red;
+  }
+}
+.accordion__item.active{
+  .accordion__button{
+    background-color: #000;
+    color: #fff;
+  }
+}

@@ -4,16 +4,67 @@ import {Header} from "./components/Header/Header";
 import {Accordion} from "./components/Accordion/Accordion";
 
 let data:Iaccdata[] = [
+    {
+        "id":1,
+        "title":"Hawaiian party",
+        "date":"13.02.2023",
+        "image":"/images/1.jpg"
+    }
+    ,{
+        "id":2,
+        "title":"Мafia party",
+        "date":"13.02.2023",
+        "image":"/images/2.jpg"
+    }
+    ,{
+        "id":3,
+        "title":"Party",
+        "date":"13.02.2023",
+        "image":"/images/3.jpg"
+    }
+    ,{
+        "id":4,
+        "title":"Party on the beach",
+        "date":"13.02.2023",
+        "image":"/images/4.jpg"
+    }
+    ,{
+        "id":5,
+        "title":"Home Security",
+        "date":"13.02.2023",
+        "image":"/images/1.jpg"
+    }
+    ,{
+        "id":6,
+        "title":"Network Design & Implementation",
+        "date":"13.02.2023",
+        "image":"/images/6.jpg"
+    }
+    ,{
+        "id":7,
+        "title":"System Design & Engineering",
+        "date":"13.02.2023",
+        "image":"/images/2.jpg"
+    }
+    ,{
+        "id":8,
+        "title":"Client Care Plans",
+        "date":"13.02.2023",
+        "image":"/images/3.jpg"
+    }
+    ,{
+        "id":9,
+        "title":"Client Care Plans",
+        "date":"13.02.2023",
+        "image":"/images/3.jpg"
+    }
 ]
 
 function App() {
   return (
     <div className="App">
       <Header />
-        <div className="Accordion_container">
-            <Accordion />
-        </div>
-
+        <Accordion data={data}/>
     </div>
   );
 }
@@ -24,7 +75,6 @@ export default App;
 interface Iaccdata{
     "id": number;
     "title": string;
-    "description": string;
     "image": string;
-    "data": string;
+    "date": string;
 }
