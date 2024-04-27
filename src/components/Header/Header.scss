@@ -1,3 +1,4 @@
+
 header{
     position: relative;
     width: 100%;
@@ -9,6 +10,16 @@ header{
     flex-flow: column nowrap;
     z-index: 1;
 
+    .logo{
+        cursor: pointer;
+        *{
+            cursor:pointer;
+        }
+        position:relative;
+        top: -25%;
+        opacity: 0;
+        transition: .3s ease-out;
+    }
     .logo svg{
         width: calc(var(--index) * 10);
         height: calc(var(--index) * 5);
@@ -17,8 +28,10 @@ header{
 
 .header_image{
     position:absolute;
-    top:0;
+    top:-50%;
+    opacity: 0;
     z-index: 2;
+    transition: .3s ease-out;
 
     svg{
         width: calc(var(--index) * 15);
@@ -58,6 +71,12 @@ header{
     align-items: center;
     flex-flow:column nowrap;
     z-index: 3;
+    >*{
+        position:relative;
+        top:-25%;
+        opacity: 0;
+        transition: .3s ease-out;
+    }
 }
 
 .header_button{
@@ -87,6 +106,35 @@ footer {
     align-items: center;
     flex-flow: column nowrap;
     z-index: 1;
+    .footer_to_events{
+        position:absolute;
+        top: 50%;
+        right: 5%;
+        cursor: pointer;
+        transform: translateY(-50%);
+        *{
+            cursor: pointer;
+        }
+        a{
+            font-size: calc(var(--index) * .75);
+            color: var(--white_text);
+            font-family: "Poppins", sans-serif;
+            font-weight: 300;
+        }
+        svg{
+            width: calc(var(--index) * 1);
+            height: calc(var(--index) * 1);
+            margin-left: 8px;
+            transform: translateY(20%) rotate(0deg);
+            transition: .3s;
+        }
+
+    }
+    .clicked svg{
+        transform: rotate(180deg);
+    }
+
+
 }
 
 #header_form{
@@ -186,7 +234,7 @@ footer {
     background-color: var(--popup);
     opacity: 0;
     transition: all .5s;
-    z-index: 10;
+    z-index: 999999;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -201,6 +249,7 @@ footer {
     justify-content: space-evenly;
     align-items: center;
     flex-flow: column nowrap;
+    z-index: 9999;
 
 
     h1{
@@ -266,4 +315,16 @@ footer {
 .active{
     top: 0;
     opacity: 1;
+}
+@media (max-width :768px){
+    footer{
+        .footer_to_events{
+            position: relative;
+            right: 0;
+            top: 0;
+
+            transform: translateY(0);
+            margin-top: 5px;
+        }
+    }
 }

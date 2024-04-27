@@ -1,6 +1,6 @@
 .Accordion {
   width: 100dvw;
-  height: 100dvh;
+  min-height: 100dvh;
   display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,38 +13,48 @@
   height: 70dvh;
   min-height: 300px;
   display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  z-index: 0;
 }
 .accordion__item {
-  width: calc(var(--index) * 4);
+  width: calc(var(--index) * 3);
   display: flex;
+  flex-flow: row;
   overflow: hidden;
   transition: width 0.3s;
+  margin: 0 2px;
 
 
   .accordion__button{
     position:relative;
     flex-shrink: 0;
-    width: calc(var(--index) *4);
-    border-left: 1px solid #000;
+    width: calc(var(--index) *3);
     transition: background-color 0.3s;
+
+  }
+  .acc_but_wrapper{
+    position:relative;
+    width: calc(var(--index) *3);
+    height: 100%;
+    transition: background-color 0.3s;
+    background: linear-gradient(180deg, rgba(22,44,78,0.8) 44%, rgba(22,44,78,1) 73%);
     cursor: pointer;
     display: flex;
     flex-flow: column;
-    background-color: var(--blue);
     justify-content: flex-end;
     align-items: center;
     padding: 20px 10px;
 
-
     *{
-        cursor: pointer;
+      cursor: pointer;
     }
     h2{
       position: relative;
-        font-size: calc(var(--index) * 1.25);
-        font-weight: 600;
-        margin: 0;
-        font-family: 'pro display';
+      font-size: calc(var(--index) * 1.25);
+      font-weight: 600;
+      margin: 0;
+      font-family: 'pro display semi bold';
       text-align: left;
       color: var(--white_text);
     }
@@ -53,23 +63,218 @@
       width: calc(var(--index) * 20);
       bottom: 50%;
     }
-
-
-
   }
-
+  .acc_collapse{
+    width: auto;
+    flex-shrink: 0;
+  }
   .accordion_content{
+    width: auto;
     flex-shrink: 0;
     height: 100%;
-    padding: 40px 30px;
     overflow: hidden;
     overflow-y: auto;
     background-color: red;
+    position: relative;
+
+
+    .acc_i_photo{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      background-repeat: no-repeat;
+      background-position:center;
+      background-size:cover;
+      overflow: hidden;
+    }
+    .acc_i_info{
+      position: relative;
+      z-index: 5;
+      height: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-end;
+          align-items: flex-start;
+      width: 35%;
+      background-color: rgba(12,12,12,80%);
+      backdrop-filter: blur(40px);
+      padding-left: 16px;
+      transition: .3s;
+
+      h3{
+        font-size: calc(var(--index) * 1.25);
+        font-family: 'pro display semi bold';
+        color: var(--white_text);
+        margin: 0;
+      }
+      h4{
+        font-size: calc(var(--index) * .8);
+        font-family: 'pro display regular';
+        color: rgba(255,255,255,0.8);
+        margin: 16px 0;
+      }
+
+      a{
+        box-sizing: border-box;
+        font-size: calc(var(--index) * .75);
+        font-family: 'pro display semi bold';
+        color: var(--white_text);
+        text-decoration: none;
+        width: calc(var(--index) * 8);
+        height: calc(var(--index) * 2);
+        border: 2px solid var(--white_text);
+        border-left: 5px solid var(--white_text);
+        margin: 16px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: .3s;
+      }
+      a:hover{
+        background-color: var(--white_text);
+        color: var(--blue);
+      }
+    }
+
+    .acc_top_l{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        color: rgba(255,255,255,0.04);
+      font-size: calc(var(--index) * 14);
+      transform: translateX(-35%);
+      font-family: 'pro display semi bold';
+    }
+
   }
 }
 .accordion__item.active{
-  .accordion__button{
-    background-color: #000;
+  .acc_but_wrapper{
+    background-color: var(--blue);
     color: #fff;
+  }
+}
+
+@media (width <=768px){
+  .accordion__container{
+    width: 90dvw;
+    min-height: 300px;
+    display: block;
+  }
+  .accordion__item {
+    width: 100%;
+    display: flex;
+    flex-flow: column-reverse;
+    height: auto;
+    margin: 2px 0;
+    .accordion__button{
+      position:relative;
+      width: 100%;
+      transition: background-color 0.3s;
+
+    }
+    .acc_but_wrapper{
+
+      position:relative;
+      width: 100%;
+      height: auto;
+      transition: background-color 0.3s;
+      background: linear-gradient(-90deg, rgba(22,44,78,0.8) 44%, rgba(22,44,78,1) 73%);
+      cursor: pointer;
+      display: flex;
+      flex-flow: row-reverse;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 20px 10px;
+
+      h2{
+        margin: 0 10px;
+        position: relative;
+        font-size: calc(var(--index) * 1.5);
+      }
+      :nth-child(1){
+        transform: rotate(0deg);
+        width:auto;
+        bottom: 0;
+      }
+    }
+
+    .acc_collapse{
+      position: relative;
+      width: 100%;
+      transition: height 0.3s ease-out;
+      overflow: hidden;
+    }
+    .acc_collapse.open {
+      height: auto;
+    }
+    .accordion_content{
+      position: relative;
+      display: flex;
+      overflow: visible;
+      flex-flow: column;
+      justify-content: flex-end;
+      min-height: 60vh;
+      .acc_i_photo{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        background-repeat: no-repeat;
+        background-position:center;
+        background-size:cover;
+        overflow: hidden;
+      }
+      .acc_i_info{
+        position: relative;
+        z-index: 5;
+        height: 40%;
+        display: flex;
+        flex-flow: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        width: 100%;
+        padding-left: 32px;
+        padding-top: 24px ;
+
+        h3{
+          font-size: max(calc(var(--index) * 1.25), 24px);
+          margin: 0;
+        }
+        h4{
+          font-size: max(calc(var(--index) * .8), 16px);
+          margin: 16px 0;
+        }
+
+        a{
+          min-width: 200px;
+          min-height: 50px;
+          width: max(calc(var(--index) * 8));
+          height:max( calc(var(--index) * 2));
+          transition: .3s;
+          margin: 16px 0;
+
+        }
+        a:hover{
+          background-color: var(--white_text);
+          color: var(--blue);
+        }
+      }
+
+      .acc_top_l{
+        left: 100%;
+        z-index: 4;
+        font-size: calc(var(--index) * 5);
+        transform: translateX(-100%);
+      }
+
+    }
   }
 }

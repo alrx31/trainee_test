@@ -1,5 +1,5 @@
 import './Header.scss';
-import React from "react";
+import React, {useEffect, useRef} from "react";
 
 
 
@@ -9,6 +9,12 @@ export const PopUp = ({
         isOpen, onClose
 }:PopUpProps
 ) => {
+    let popup:any = useRef(null)
+    useEffect(()=>{
+        if(isOpen){
+            popup.current.focus()
+        }
+    },[])
     return (
         <div className={["popup ", isOpen ? "active" : ""].join("")}>
             <div className="popup__container">
@@ -17,9 +23,9 @@ export const PopUp = ({
                 <h1>{title}</h1>
                 <h3>{subtitle}</h3>
 
-                <div className="popup__button" onClick={() =>onClose()}>
+                <button ref={popup} className="popup__button" onClick={() =>onClose()}>
                     <h4>Close</h4>
-                </div>
+                </button>
             </div>
         </div>
     );

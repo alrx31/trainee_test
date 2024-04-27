@@ -39,11 +39,16 @@ img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 
 @font-face {
-	font-family: 'pro display';
+	font-family: 'pro display semi bold';
 	src: url("fonts/SF-Pro-Display-Semibold.otf") format("opentype");
-	font-weight: 600;
 	font-style: normal;
-
+	font-weight: 600;
+}
+@font-face {
+	font-family: 'pro display regular';
+	src: url("fonts/SF-Pro-Display-Regular.otf") format("opentype");
+	font-style: normal;
+	font-weight: 300;
 }
 
 
@@ -103,4 +108,7 @@ h5{
 }
 
 
-
+.show{
+	opacity: 1 !important;
+	top:0 !important;
+}

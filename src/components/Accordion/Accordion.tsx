@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import './Accordion.scss';
-import {Simulate} from "react-dom/test-utils";
 import {Accordion_node} from "./accordion_node";
 
 export const Accordion = (
@@ -13,18 +12,20 @@ export const Accordion = (
 
 
     return (
-        <div className="Accordion">
+        <div className="Accordion" id={"events_hook"}>
             <h1>all events</h1>
             <div className="accordion__container">
                 {data.map((item:Iaccdata)=>{
                     return(
                         <Accordion_node
+                            key={item.id}
                             id={item.id}
                             title={item.title}
                             date={item.date}
                             isOpen={openId === item.id}
                             onClick={()=>setopenId(item.id)}
                             length={data.length}
+                            url={item.image}
                         />
                     )
                 })}

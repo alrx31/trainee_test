@@ -8,55 +8,49 @@ let data:Iaccdata[] = [
         "id":1,
         "title":"Hawaiian party",
         "date":"13.02.2023",
-        "image":"/images/1.jpg"
+        "image":"images/1.png"
     }
     ,{
         "id":2,
         "title":"Мafia party",
         "date":"13.02.2023",
-        "image":"/images/2.jpg"
+        "image":"images/2.png"
     }
     ,{
         "id":3,
         "title":"Party",
         "date":"13.02.2023",
-        "image":"/images/3.jpg"
+        "image":"images/3.png"
     }
     ,{
         "id":4,
         "title":"Party on the beach",
         "date":"13.02.2023",
-        "image":"/images/4.jpg"
+        "image":"images/4.png"
     }
     ,{
         "id":5,
         "title":"Home Security",
         "date":"13.02.2023",
-        "image":"/images/1.jpg"
+        "image":"images/1.png"
     }
     ,{
         "id":6,
         "title":"Network Design & Implementation",
         "date":"13.02.2023",
-        "image":"/images/6.jpg"
+        "image":"images/6.png"
     }
     ,{
         "id":7,
         "title":"System Design & Engineering",
         "date":"13.02.2023",
-        "image":"/images/2.jpg"
+        "image":"images/2.png"
     }
-    ,{
-        "id":8,
-        "title":"Client Care Plans",
-        "date":"13.02.2023",
-        "image":"/images/3.jpg"
-    }
-    ,{
-        "id":9,
-        "title":"Client Care Plans",
-        "date":"13.02.2023",
-        "image":"/images/3.jpg"
+    , {
+        "id": 8,
+        "title": "Client Care Plans",
+        "date": "13.02.2023",
+        "image": "images/3.png"
     }
 ]
 

@@ -7,9 +7,9 @@ import axios from "axios";
 
 export const Header: React.FC = () => {
     const [inp_value, setValue] = useState("");
-    const [inp_error, set_inp_Error] = useState(false);
 
     const [isOpen, setIsOpen] = useState(false);
+
 
     const [data, setData] = useState(null);
 
@@ -18,43 +18,87 @@ export const Header: React.FC = () => {
         subtitle: ""
     });
 
+    const [showFirst, setShowFirst] = useState(false);
+    const [showSecond, setShowSecond] = useState(false);
+    const [showThird, setShowThird] = useState(false);
+    const [showFour, setShowFour] = useState(false);
+    const [showFifth, setShowFifth] = useState(false);
+
+    const [isClocked, setIsClocked] = useState(false);
+
+    useEffect(() => {
+        // Задержка перед появлением первого элемента
+        const timeoutFirst = setTimeout(() => {
+            setShowFirst(true);
+        }, 200);
+
+        // Задержка перед появлением второго элемента
+        const timeoutSecond = setTimeout(() => {
+            setShowSecond(true);
+        }, 400);
+
+        // Задержка перед появлением третьего элемента
+        const timeoutThird = setTimeout(() => {
+            setShowThird(true);
+        }, 600);
+
+        const timeoutFour = setTimeout(() => {
+            setShowFour(true);
+        }, 800);
+
+        const timeoutFifth = setTimeout(() => {
+            setShowFifth(true);
+        }, 1000);
+
+        return () => {
+            clearTimeout(timeoutFirst);
+            clearTimeout(timeoutSecond);
+            clearTimeout(timeoutThird);
+            clearTimeout(timeoutFour);
+            clearTimeout(timeoutFifth);
+        };
+    }, []);
+
+
+
 
     let handleChange = (data:string)=>{
         setValue(data);
     }
+    let validateEmail =(email:string)=> {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
     let handleSubmit = (e:any) => {
         e.preventDefault();
+
+        if (!validateEmail(inp_value)) {
+            setPopupData({
+                title: "ERROR!",
+                subtitle: "You have entered an invalid email address"
+
+            })
+            return;
+        }
+
         let res = fetchEmail(inp_value);
     }
 
     let fetchEmail = async (email:string) => {
-        try{
-            const response = await axios.get("https://blablabla.api/email");
-            if(response.status === 200){
-                const data = await response.data;
-                setPopupData({
-                    title: "SUCCESS!",
-                    subtitle: "You have successfully subscribed to the email newsletter"
-
+            await axios.post('https://blablabla.api/email', {email})
+                .then((response) => {
+                    setPopupData({
+                        title: "Success!",
+                        subtitle: "You have successfully subscribed to our newsletter"
+                    })
                 })
-                setData(data);
-            }else if(response.status === 400 || response.status === 404){
-                setPopupData({
-                    title: "ERROR!",
-                    subtitle: "You have entered an invalid email address"
+                .catch((error) => {
+                    setPopupData({
+                        title: "ERROR!",
+                        subtitle: "Error occurred while subscribing to our newsletter"
+                    })
                 });
-
-            }
-        }
-        catch(e) {
-
-            setPopupData({
-                title: "ERROR!",
-                subtitle: "You have entered an invalid email address"
-            })
-            console.error(e);
-
-        }
     }
 
     useEffect(()=>{
@@ -63,12 +107,18 @@ export const Header: React.FC = () => {
         }
     },[data, popup_data]);
 
+    let handleClickEvents = () =>{
+        setIsClocked(true);
+        setTimeout(()=>{
+            setIsClocked(false);
+        },1000)
+    }
 
 
 
     return (
         <header>
-            <div className="header_image header_image_l">
+            <div className={`header_image header_image_l ${showThird&& 'show'}`}>
                 <svg width="470" height="419" viewBox="0 0 470 419" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_i_3_738)">
                         <path fillRule="evenodd" clipRule="evenodd" d="M43.4328 410.107C147.67 380.657 62.1031 303.502 98.4759 255.414C142.66 197 491.186 123.286 468.434 26.699C399.956 -127.104 194.156 -34.0396 142.454 -89.585C92.3313 -143.434 4.42358 -227.864 -63.8169 -255.388C-129.136 -281.733 -269.011 -281.089 -290.833 -154.314C-304.75 -58.9551 -261.367 -35.6642 -292.329 13.0606C-325.114 64.6532 -376.659 107.424 -381.099 168.374C-385.91 234.428 -366.845 307.689 -316.965 351.255C-268.416 393.657 -195.189 375.935 -131.554 386.326C-72.0016 396.051 -11.5614 434.965 43.4328 410.107Z" fill="#162C4E"/>
@@ -88,7 +138,7 @@ export const Header: React.FC = () => {
                 </svg>
 
             </div>
-            <div className="header_image header_image_r">
+            <div className={`header_image header_image_r ${showThird && 'show'}`}>
                 <svg width="271" height="327" viewBox="0 0 271 327" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_i_3_739)">
                         <path fillRule="evenodd" clipRule="evenodd" d="M692.596 68.3349C731.063 -32.9233 618.057 -10.1912 601.095 -68.0588C580.49 -138.353 729.002 -462.166 637.823 -501.457C473.409 -538.128 425.523 -317.399 350.068 -308.983C276.918 -300.824 156.67 -280.547 93.8751 -242.151C33.7688 -205.398 -49.0901 -92.6886 39.779 0.3896C108.113 68.3963 152.69 47.4384 173.389 101.341C195.307 158.416 198.952 225.298 245.285 265.188C295.498 308.417 365.735 336.769 430.477 322.676C493.491 308.959 522.898 239.593 569.18 194.684C612.493 152.657 679.791 127.312 692.596 68.3349Z" fill="#162C4E"/>
@@ -109,7 +159,7 @@ export const Header: React.FC = () => {
 
             </div>
             <div className="header_wrapper">
-                <div className="logo">
+                <a href={"#"} className={`logo ${showFirst && 'show'}`}>
                     <svg width="190" height="61" viewBox="0 0 190 61" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M25.637 46.6618C26.5216 41.3988 30.5532 38.0604 36.6629 38.0604H52.5397C58.4653 38.0604 59.724 34.1696 59.724 34.1696C58.8393 39.4326 56.4287 42.771 50.319 42.771H34.0326C27.2935 42.771 25.637 46.6618 25.637 46.6618Z" fill="#DF2325"/>
                         <path d="M52.2662 43.7749C50.9184 45.8005 49.3568 45.9787 46.394 45.9787C43.4312 45.9787 39.9519 46.0441 35.1366 45.9787C29.9532 45.9074 25.9513 48.2479 25.6248 53.3386C26.9726 51.313 28.7241 50.9447 31.6869 50.9447C34.6497 50.9447 36.431 50.8794 41.2462 50.9447C46.4237 51.0219 50.4731 48.735 52.2662 43.7749Z" fill="#EE4523"/>
@@ -137,18 +187,18 @@ export const Header: React.FC = () => {
                         <path d="M187.187 53.8201C185.554 53.8201 184.301 52.9291 184.301 51.4856H185.732C185.792 52.1569 186.261 52.6974 187.187 52.6974C188.125 52.6974 188.653 52.1925 188.653 51.4975C188.653 49.5254 184.325 50.8025 184.325 47.7968C184.325 46.3652 185.465 45.4742 187.128 45.4742C188.689 45.4742 189.793 46.2939 189.906 47.6958H188.428C188.38 47.1434 187.899 46.6385 187.056 46.6147C186.284 46.5909 185.685 46.9652 185.685 47.7552C185.685 49.5967 190.001 48.4502 190.001 51.4322C190.001 52.6499 189.004 53.8201 187.187 53.8201Z" fill="#172C4F"/>
                     </svg>
 
-                </div>
+                </a>
                 <div className="header_wrapper1">
-                    <h1>Under Construction</h1>
-                    <h3>We're making lots of improvements and will be back soon</h3>
-                    <div className="header_clock">
+                    <h1 className={`${showSecond && 'show'}`}>Under Construction</h1>
+                    <h3 className={`${showThird && 'show'}`}>We're making lots of improvements and will be back soon</h3>
+                    <div className={`header_clock ${showFour && 'show'}`}>
                         <CountdownTimer/>
                     </div>
 
 
-                        <h3>Check our event page when you wait:</h3>
+                    <h3 className={`${showFifth && 'show'}`}>Check our event page when you wait:</h3>
 
-                    <div className="header_button">
+                    <a href={"#events_hook"} className={`header_button ${showFifth && 'show'}`}>
                         <h4>Go to the events</h4>
                         <div className="header_button__img">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -156,7 +206,7 @@ export const Header: React.FC = () => {
                                 <path d="M10 4.16666L15.8333 9.99999L10 15.8333" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <footer>
@@ -170,9 +220,20 @@ export const Header: React.FC = () => {
                         </svg>
                     </button>
                 </form>
+
+                <div className={`footer_to_events ${isClocked ? 'clicked' : ""}`}>
+                    <a href="#events_hook" onClick={()=>handleClickEvents()}>
+                        Other Events
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 5V19" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M19 12L12 19L5 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
             </footer>
 
-            <PopUp title={popup_data.title} subtitle={popup_data.subtitle} onClose={()=>setIsOpen(false)} isOpen={isOpen} />
+            <PopUp title={popup_data.title} subtitle={popup_data.subtitle} onClose={()=>{setIsOpen(false);}} isOpen={isOpen} />
 
         </header>
     )
