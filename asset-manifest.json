@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.8281b268.css",
-    "main.js": "/static/js/main.8f94372c.js",
-    "static/media/SF-Pro-Display-Semibold.otf": "/static/media/SF-Pro-Display-Semibold.037dc63930459813f575.otf",
-    "static/media/SF-Pro-Display-Regular.otf": "/static/media/SF-Pro-Display-Regular.d1f5e6e16dd4f75c3950.otf",
-    "index.html": "/index.html",
-    "main.8281b268.css.map": "/static/css/main.8281b268.css.map",
-    "main.8f94372c.js.map": "/static/js/main.8f94372c.js.map"
+    "main.css": "/trainee_test/static/css/main.a737c250.css",
+    "main.js": "/trainee_test/static/js/main.8f94372c.js",
+    "static/media/SF-Pro-Display-Semibold.otf": "/trainee_test/static/media/SF-Pro-Display-Semibold.037dc63930459813f575.otf",
+    "static/media/SF-Pro-Display-Regular.otf": "/trainee_test/static/media/SF-Pro-Display-Regular.d1f5e6e16dd4f75c3950.otf",
+    "index.html": "/trainee_test/index.html",
+    "main.a737c250.css.map": "/trainee_test/static/css/main.a737c250.css.map",
+    "main.8f94372c.js.map": "/trainee_test/static/js/main.8f94372c.js.map"
   },
   "entrypoints": [
-    "static/css/main.8281b268.css",
+    "static/css/main.a737c250.css",
     "static/js/main.8f94372c.js"
   ]
 }
