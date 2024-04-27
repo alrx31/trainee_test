@@ -198,7 +198,7 @@ export const Header: React.FC = () => {
 
                     <h3 className={`${showFifth && 'show'}`}>Check our event page when you wait:</h3>
 
-                    <a href={"#events_hook"} className={`header_button ${showFifth && 'show'}`}>
+                    <a href={"https://github.com/ULtaR31"} target={"_blank"} className={`header_button ${showFifth && 'show'}`}>
                         <h4>Go to the events</h4>
                         <div className="header_button__img">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
