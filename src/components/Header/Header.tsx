@@ -82,7 +82,7 @@ export const Header: React.FC = () => {
             return;
         }
 
-        let res = fetchEmail(inp_value);
+        fetchEmail(inp_value);
     }
 
     let fetchEmail = async (email:string) => {
@@ -159,7 +159,7 @@ export const Header: React.FC = () => {
 
             </div>
             <div className="header_wrapper">
-                <a href={"#"} className={`logo ${showFirst && 'show'}`}>
+                <a href={""} className={`logo ${showFirst && 'show'}`}>
                     <svg width="190" height="61" viewBox="0 0 190 61" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M25.637 46.6618C26.5216 41.3988 30.5532 38.0604 36.6629 38.0604H52.5397C58.4653 38.0604 59.724 34.1696 59.724 34.1696C58.8393 39.4326 56.4287 42.771 50.319 42.771H34.0326C27.2935 42.771 25.637 46.6618 25.637 46.6618Z" fill="#DF2325"/>
                         <path d="M52.2662 43.7749C50.9184 45.8005 49.3568 45.9787 46.394 45.9787C43.4312 45.9787 39.9519 46.0441 35.1366 45.9787C29.9532 45.9074 25.9513 48.2479 25.6248 53.3386C26.9726 51.313 28.7241 50.9447 31.6869 50.9447C34.6497 50.9447 36.431 50.8794 41.2462 50.9447C46.4237 51.0219 50.4731 48.735 52.2662 43.7749Z" fill="#EE4523"/>

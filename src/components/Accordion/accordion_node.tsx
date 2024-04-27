@@ -73,7 +73,7 @@ export const Accordion_node = (
                         <h2 className="acc_top_l">0{id}</h2>
                         <h3>{title}</h3>
                         <h4>{date}</h4>
-                        <a href="https://github.com/ULtaR31" target={"_blank"} className="accc_button">
+                        <a rel="noreferrer" href="https://github.com/ULtaR31" target={"_blank"} className="accc_button">
                             More information
                         </a>
                     </div>
