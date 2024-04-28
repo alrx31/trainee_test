@@ -130,6 +130,20 @@ footer {
         }
 
     }
+    ::after{
+        content:"";
+        position: absolute;
+        width: 0;
+        height: 1px;
+        background-color: var(--white_text);
+        bottom: -25%;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width .3s;
+    }
+    .clicked ::after{
+        width: 100%;
+    }
     .clicked svg{
         transform: rotate(180deg);
     }

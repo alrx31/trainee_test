@@ -64,8 +64,11 @@ export const Accordion_node = (
                     ref={itemRef}
                 >
                     <div className="acc_i_photo"
+                         style={{
+                                backgroundImage:`url(${url})`,
+
+                         }}
                     >
-                        <img src={url} alt=""/>
                     </div>
                     <div className="acc_i_info">
                         <h2 className="acc_top_l">0{id}</h2>
